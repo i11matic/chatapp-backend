@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/i11matic/chatapp-backend/pkg/websocket"
 )
@@ -35,5 +36,5 @@ func setupRoutes() {
 func main() {
 	fmt.Println("Distributed Chat App v0.01")
 	setupRoutes()
-	http.ListenAndServe("0.0.0.0:8080", nil)
+	http.ListenAndServe(fmt.Sprintf("%s:%s", os.Getenv("SERVER_IP"), os.Getenv("SERVER_PORT")), nil)
 }
